@@ -15,12 +15,12 @@ export default function Home() {
 			<ToastContainer />
 			<Box
 				sx={{
-					height: '100vh', // Takes up full viewport height
+					height: '100vh', 
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
 					alignItems: 'center',
-					overflow: 'hidden', // Prevent scroll on main screen
+					overflow: 'hidden',
 				}}
 			>
 				<Typography
@@ -35,6 +35,7 @@ export default function Home() {
 					sx={{
 						width: '100%',
 						maxWidth: '1200px',
+						height: '90vh'
 					}}
 				>
 					<TaskTable />
