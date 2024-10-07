@@ -57,6 +57,11 @@ const TaskTable: React.FC = () => {
 		setSearchQuery(e.target.value);
 	};
 
+	const formatDate = (isoDate: string) => {
+		const date = new Date(isoDate);
+		return date.toLocaleString(); // Basic formatting of date and time
+	};
+
 	const handleAddTask = () => {
 		setAddOpen(true);
 	};
@@ -105,7 +110,7 @@ const TaskTable: React.FC = () => {
 			<TableContainer
 				component={Paper}
 				sx={{
-					maxHeight: '500px', 
+					maxHeight: '500px',
 					overflowY: 'auto',
 					mb: 3,
 				}}
@@ -116,6 +121,7 @@ const TaskTable: React.FC = () => {
 							<TableCell style={{ fontWeight: 'bold', fontSize: '20px' }}> Task Id</TableCell>
 							<TableCell style={{ fontWeight: 'bold', fontSize: '20px' }}>Title</TableCell>
 							<TableCell style={{ fontWeight: 'bold', fontSize: '20px' }}>Description</TableCell>
+							<TableCell style={{ fontWeight: 'bold', fontSize: '20px' }}>Created At</TableCell>
 							<TableCell style={{ fontWeight: 'bold', fontSize: '20px' }}>Actions</TableCell>
 						</TableRow>
 					</TableHead>
@@ -124,7 +130,8 @@ const TaskTable: React.FC = () => {
 							<TableRow key={task.id}>
 								<TableCell>{task.id}</TableCell>
 								<TableCell>{task.title}</TableCell>
-								<TableCell>{task.description}</TableCell>
+								<TableCell>{(task.description && task.description.length > 40 ? task.description.slice(0, 40) + '...' : task.description)}</TableCell>
+								<TableCell>{formatDate(task.created_at)}</TableCell>
 								<TableCell>
 									<Button variant='contained' color='error' onClick={() => handleDelete(task.id)}>
 										Delete
